@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - UserListResult
 
-struct UserListResult: Decodable {
+public struct UserListResult: Decodable {
     
     // MARK: - Properties
     
@@ -27,7 +27,7 @@ struct UserListResult: Decodable {
     
     // MARK: - Lifecycle
     
-    init(from decoder: any Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.totalCount = try container.decode(Int.self, forKey: .totalCount)
         self.incompleteResults = try container.decode(Bool.self, forKey: .incompleteResults)
@@ -37,7 +37,7 @@ struct UserListResult: Decodable {
 
 // MARK: - UserListItem
 
-struct UserListItem: Decodable {
+public struct UserListItem: Decodable {
     
     // MARK: - Properties
     
@@ -55,7 +55,7 @@ struct UserListItem: Decodable {
     
     // MARK: - Lifecycle
     
-    init(from decoder: any Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: .id)
         self.login = try container.decode(String.self, forKey: .login)
