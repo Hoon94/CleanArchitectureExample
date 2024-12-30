@@ -31,6 +31,7 @@
 		78C7EA2A2D21920C00AF44DC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C7EA292D21920C00AF44DC /* NetworkManager.swift */; };
 		78C7EA2C2D22432700AF44DC /* UserNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C7EA2B2D22432700AF44DC /* UserNetwork.swift */; };
 		78C7EA2E2D22473000AF44DC /* UserCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C7EA2D2D22473000AF44DC /* UserCoreData.swift */; };
+		78C7EA302D227FCB00AF44DC /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C7EA2F2D227FCB00AF44DC /* UserRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		78C7EA292D21920C00AF44DC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		78C7EA2B2D22432700AF44DC /* UserNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetwork.swift; sourceTree = "<group>"; };
 		78C7EA2D2D22473000AF44DC /* UserCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoreData.swift; sourceTree = "<group>"; };
+		78C7EA2F2D227FCB00AF44DC /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 		78C7EA172D1F180E00AF44DC /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				78C7EA2F2D227FCB00AF44DC /* UserRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				78C7EA132D1F151400AF44DC /* UserRepositoryProtocol.swift in Sources */,
 				78C7E9DE2D1E44D600AF44DC /* MyCleanProject.xcdatamodeld in Sources */,
 				78C7EA2C2D22432700AF44DC /* UserNetwork.swift in Sources */,
+				78C7EA302D227FCB00AF44DC /* UserRepository.swift in Sources */,
 				78C7EA0A2D1EF39D00AF44DC /* UserListItem.swift in Sources */,
 				78C7EA2E2D22473000AF44DC /* UserCoreData.swift in Sources */,
 				78C7EA0E2D1EF66800AF44DC /* CoreDataError.swift in Sources */,
