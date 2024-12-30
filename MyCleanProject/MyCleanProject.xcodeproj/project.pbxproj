@@ -32,6 +32,8 @@
 		78C7EA2C2D22432700AF44DC /* UserNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C7EA2B2D22432700AF44DC /* UserNetwork.swift */; };
 		78C7EA2E2D22473000AF44DC /* UserCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C7EA2D2D22473000AF44DC /* UserCoreData.swift */; };
 		78C7EA302D227FCB00AF44DC /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C7EA2F2D227FCB00AF44DC /* UserRepository.swift */; };
+		78C7EA322D22871600AF44DC /* UserUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C7EA312D22871600AF44DC /* UserUseCaseTests.swift */; };
+		78C7EA352D22880000AF44DC /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C7EA342D22880000AF44DC /* MockUserRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		78C7EA2B2D22432700AF44DC /* UserNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetwork.swift; sourceTree = "<group>"; };
 		78C7EA2D2D22473000AF44DC /* UserCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoreData.swift; sourceTree = "<group>"; };
 		78C7EA2F2D227FCB00AF44DC /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		78C7EA312D22871600AF44DC /* UserUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCaseTests.swift; sourceTree = "<group>"; };
+		78C7EA342D22880000AF44DC /* MockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				78C7E9ED2D1E44D900AF44DC /* MyCleanProjectTests.swift */,
+				78C7EA332D2287E900AF44DC /* Mock */,
+				78C7EA312D22871600AF44DC /* UserUseCaseTests.swift */,
 			);
 			path = MyCleanProjectTests;
 			sourceTree = "<group>";
@@ -240,6 +246,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		78C7EA332D2287E900AF44DC /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				78C7EA342D22880000AF44DC /* MockUserRepository.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,6 +421,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78C7EA352D22880000AF44DC /* MockUserRepository.swift in Sources */,
+				78C7EA322D22871600AF44DC /* UserUseCaseTests.swift in Sources */,
 				78C7E9EE2D1E44D900AF44DC /* MyCleanProjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
