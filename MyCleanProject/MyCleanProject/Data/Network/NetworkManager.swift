@@ -8,7 +8,15 @@
 import Alamofire
 import Foundation
 
-public class NetworkManager {
+// MARK: - NetworkManagerProtocol
+
+protocol NetworkManagerProtocol {
+    func fetchData<T: Decodable>(url: String, method: HTTPMethod, parameters: Parameters?) async -> Result<T, NetworkError>
+}
+
+// MARK: - NetworkManager
+
+public class NetworkManager: NetworkManagerProtocol {
     
     // MARK: - Properties
     
@@ -40,9 +48,9 @@ public class NetworkManager {
         guard 200..<400 ~= response.statusCode else { return .failure(.serverError(response.statusCode)) }
         
         do {
-            let data = try JSONDecoder().decode(T.self, from: data)
+            let decodedData = try JSONDecoder().decode(T.self, from: data)
             
-            return .success(data)
+            return .success(decodedData)
         } catch {
             return .failure(.failToDecode(error.localizedDescription))
         }
