@@ -37,7 +37,7 @@ public struct UserListResult: Decodable {
 
 // MARK: - UserListItem
 
-public struct UserListItem: Decodable {
+public struct UserListItem: Decodable, Hashable {
     
     // MARK: - Properties
     
