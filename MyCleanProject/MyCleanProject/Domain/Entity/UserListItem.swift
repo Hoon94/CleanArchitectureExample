@@ -61,4 +61,10 @@ public struct UserListItem: Decodable {
         self.login = try container.decode(String.self, forKey: .login)
         self.imageUrl = try container.decode(String.self, forKey: .imageUrl)
     }
+    
+    public init(id: Int, login: String, imageUrl: String) {
+        self.id = id
+        self.login = login
+        self.imageUrl = imageUrl
+    }
 }
