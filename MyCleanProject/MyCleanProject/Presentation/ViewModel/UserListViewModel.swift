@@ -52,8 +52,14 @@ public final class UserListViewModel: UserListViewModelProtocol {
     // MARK: - Helpers
     
     public func transform(input: Input) -> Output {
-        input.query.bind { query in
-            // TODO: 상황에 맞춰서 user fetch or get favorite users
+        input.query.bind { [weak self] query in
+            guard let isValidate = self?.validateQuery(query: query), isValidate else {
+                self?.getFavoriteUsers(query: "")
+                return
+            }
+            
+            self?.fetchUser(query: query, page: 0)
+            self?.getFavoriteUsers(query: query)
         }.disposed(by: disposeBag)
         
         input.saveFavorite.bind { user in
@@ -75,6 +81,54 @@ public final class UserListViewModel: UserListViewModelProtocol {
         }
         
         return Output(cellData: cellData, error: error.asObservable())
+    }
+    
+    private func fetchUser(query: String, page: Int) {
+        guard let urlAllowedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        
+        Task {
+            let result = await useCase.fetchUser(query: urlAllowedQuery, page: page)
+            
+            switch result {
+            case let .success(users):
+                if page == 0 {
+                    fetchUserList.accept(users.items)
+                } else {
+                    fetchUserList.accept(fetchUserList.value + users.items)
+                }
+            case let .failure(error):
+                self.error.accept(error.description)
+            }
+        }
+    }
+    
+    private func getFavoriteUsers(query: String) {
+        let result = useCase.getFavoriteUsers()
+        
+        switch result {
+        case .success(let users):
+            if query.isEmpty {
+                favoriteUserList.accept(users)
+            } else {
+                let filteredUsers = users.filter { user in
+                    user.login.contains(query)
+                }
+                
+                favoriteUserList.accept(filteredUsers)
+            }
+            
+            allFavoriteUserList.accept(users)
+        case .failure(let error):
+            self.error.accept(error.description)
+        }
+    }
+    
+    private func validateQuery(query: String) -> Bool {
+        if query.isEmpty {
+            return false
+        } else {
+            return true
+        }
     }
 }
 
