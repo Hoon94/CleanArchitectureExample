@@ -5,6 +5,7 @@
 //  Created by Daehoon Lee on 12/27/24.
 //
 
+import RxCocoa
 import RxSwift
 import SnapKit
 import UIKit
@@ -14,6 +15,7 @@ class UserListViewController: UIViewController {
     // MARK: - Properties
     
     private let viewModel: UserListViewModelProtocol
+    private let disposeBag = DisposeBag()
     
     private let searchTextField = {
         let textField = UITextField()
@@ -39,6 +41,7 @@ class UserListViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = .systemBackground
         setUI()
+        bindView()
     }
     
     required init?(coder: NSCoder) {
@@ -66,6 +69,12 @@ class UserListViewController: UIViewController {
             make.height.equalTo(50)
         }
     }
+    
+    private func bindView() {
+        tabButtonStackView.selectedType.bind { type in
+            print("Type \(type)")
+        }.disposed(by: disposeBag)
+    }
 }
 
 final class TabButtonStackView: UIStackView {
@@ -74,11 +83,13 @@ final class TabButtonStackView: UIStackView {
     
     private let tabList: [TabButtonType]
     private let disposeBag = DisposeBag()
+    public let selectedType: BehaviorRelay<TabButtonType?>
     
     // MARK: - Lifecycle
     
     init(tabList: [TabButtonType]) {
         self.tabList = tabList
+        self.selectedType = BehaviorRelay(value: tabList.first)
         super.init(frame: .zero)
         alignment = .fill
         distribution = .fillEqually
@@ -103,6 +114,7 @@ final class TabButtonStackView: UIStackView {
                 }
                 
                 button.isSelected = true
+                self?.selectedType.accept(tabType)
             }.disposed(by: disposeBag)
             
             addArrangedSubview(button)
