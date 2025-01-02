@@ -193,9 +193,9 @@ public final class UserListViewModel: UserListViewModelProtocol {
 
 // MARK: - TabButtonType
 
-public enum TabButtonType {
-    case api
-    case favorite
+public enum TabButtonType: String {
+    case api = "API"
+    case favorite = "Favorite"
 }
 
 // MARK: - UserListCellData

@@ -258,8 +258,8 @@
 		78C7EA362D228F7E00AF44DC /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				78C7EA3A2D26DD1800AF44DC /* View */,
 				78C7EA372D228F9A00AF44DC /* ViewModel */,
-				78C7E9D72D1E44D600AF44DC /* UserListViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -270,6 +270,14 @@
 				78C7EA382D228FB900AF44DC /* UserListViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		78C7EA3A2D26DD1800AF44DC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				78C7E9D72D1E44D600AF44DC /* UserListViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
