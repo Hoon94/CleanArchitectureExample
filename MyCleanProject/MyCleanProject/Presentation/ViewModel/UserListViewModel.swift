@@ -12,7 +12,7 @@ import RxSwift
 // MARK: - UserListViewModelProtocol
 
 protocol UserListViewModelProtocol {
-    
+    func transform(input: UserListViewModel.Input) -> UserListViewModel.Output
 }
 
 // MARK: - UserListViewModel
