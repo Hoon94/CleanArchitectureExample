@@ -40,6 +40,7 @@ class UserListViewController: UIViewController {
     private let tableView = {
         let tableView = UITableView()
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.id)
+        tableView.register(HeaderTableViewCell.self, forCellReuseIdentifier: HeaderTableViewCell.id)
         
         return tableView
     }()
@@ -97,11 +98,11 @@ class UserListViewController: UIViewController {
         let output = viewModel.transform(input: UserListViewModel.Input(tabButtonType: tabButtonType, query: query, saveFavorite: saveFavorite.asObservable(), deleteFavorite: deleteFavorite.asObservable(), fetchMore: fetchMore.asObservable()))
         
         output.cellData.bind(to: tableView.rx.items) { [weak self] tableView, index, item in
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.id) as? UserTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: item.id) else { return UITableViewCell() }
             
-            cell.apply(cellData: item)
+            (cell as? UserListCellProtocol)?.apply(cellData: item)
             
-            if case .user(let user, let isFavorite) = item {
+            if let cell = cell as? UserTableViewCell, case .user(let user, let isFavorite) = item {
                 cell.favoriteButton.rx.tap.bind {
                     if isFavorite {
                         self?.deleteFavorite.accept(user.id)
