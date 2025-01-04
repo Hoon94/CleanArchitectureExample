@@ -6,6 +6,7 @@
 //
 
 import Kingfisher
+import RxSwift
 import SnapKit
 import UIKit
 
@@ -16,6 +17,8 @@ final class UserTableViewCell: UITableViewCell {
     static let id = "UserTableViewCell"
     
     // MARK: - Properties
+    
+    public var disposeBag = DisposeBag()
     
     private let userImageView = {
         let imageView = UIImageView()
@@ -35,6 +38,15 @@ final class UserTableViewCell: UITableViewCell {
         return label
     }()
     
+    public let favoriteButton = {
+        let button = UIButton()
+        button.setImage(.init(systemName: "heart"), for: .normal)
+        button.setImage(.init(systemName: "heart.fill"), for: .selected)
+        button.tintColor = .systemRed
+        
+        return button
+    }()
+    
     // MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -46,6 +58,11 @@ final class UserTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
     // MARK: - Helpers
     
     func apply(cellData: UserListCellData) {
@@ -53,20 +70,28 @@ final class UserTableViewCell: UITableViewCell {
         
         userImageView.kf.setImage(with: URL(string: user.imageUrl))
         nameLabel.text = user.login
+        favoriteButton.isSelected = isFavorite
     }
     
     private func setUI() {
-        addSubview(userImageView)
+        contentView.addSubview(userImageView)
         userImageView.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview().inset(20)
             make.width.height.equalTo(80)
         }
         
-        addSubview(nameLabel)
+        contentView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(userImageView)
             make.leading.equalTo(userImageView.snp.trailing).offset(8)
             make.trailing.equalToSuperview().inset(20)
+        }
+        
+        contentView.addSubview(favoriteButton)
+        favoriteButton.snp.makeConstraints { make in
+            make.width.height.equalTo(40)
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(-20)
         }
     }
 }
