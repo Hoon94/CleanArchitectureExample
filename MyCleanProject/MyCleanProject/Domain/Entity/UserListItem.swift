@@ -33,6 +33,12 @@ public struct UserListResult: Decodable {
         self.incompleteResults = try container.decode(Bool.self, forKey: .incompleteResults)
         self.items = try container.decode([UserListItem].self, forKey: .items)
     }
+    
+    init(totalCount: Int, incompleteResults: Bool, items: [UserListItem]) {
+        self.totalCount = totalCount
+        self.incompleteResults = incompleteResults
+        self.items = items
+    }
 }
 
 // MARK: - UserListItem
