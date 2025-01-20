@@ -211,5 +211,8 @@
 ## 📚 참고 링크
 - [🍎Apple Docs: tableView(_:prefetchRowsAt:)](https://developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching/tableview(_:prefetchrowsat:))
 - [🍎Apple Docs: UITableViewDataSourcePrefetching](https://developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching)
+- [📘blog: Clean Architecture and MVVM on iOS](https://tech.olx.com/clean-architecture-and-mvvm-on-ios-c9d167d9f5b3)
 - [📘blog: RxSwift를 사용하여 가장 단순한 Pagination 처리 방법](https://ios-development.tistory.com/979)
+- [🏷️Github: iOS-Clean-Architecture-MVVM](https://github.com/kudoleh/iOS-Clean-Architecture-MVVM)
+
 </br>
