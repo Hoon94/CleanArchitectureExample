@@ -56,6 +56,7 @@ public final class UserListViewModel: UserListViewModelProtocol {
         input.query.bind { [weak self] query in
             guard let self = self, validateQuery(query: query) else {
                 self?.getFavoriteUsers(query: "")
+                self?.fetchUserList.accept([])
                 return
             }
             
@@ -121,7 +122,12 @@ public final class UserListViewModel: UserListViewModelProtocol {
     }
     
     private func fetchUser(query: String, page: Int) {
-        guard let urlAllowedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        guard query.isEmpty == false,
+              let urlAllowedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        else {
+            fetchUserList.accept([])
+            return
+        }
         
         Task {
             let result = await useCase.fetchUser(query: urlAllowedQuery, page: page)
